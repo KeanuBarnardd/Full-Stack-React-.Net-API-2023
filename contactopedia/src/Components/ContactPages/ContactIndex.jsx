@@ -7,10 +7,6 @@ import FavouriteContact from "./FavouriteContact";
 import GeneralContact from "./GeneralContact";
 
 export default class ContactIndex extends Component {
-  handleAddContact = (newContact) => {
-    alert("Hello");
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +35,19 @@ export default class ContactIndex extends Component {
       ],
     };
   }
+
+  handleAddContact = (newContact) => {
+    const newFinalContact = {
+      ...newContact,
+      id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+      isFavorite: false,
+    };
+    this.setState((prevState) => {
+      return {
+        contactList: prevState.contactList.concat([newFinalContact]),
+      };
+    });
+  };
 
   render() {
     return (
