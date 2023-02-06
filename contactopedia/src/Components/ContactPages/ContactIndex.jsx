@@ -20,10 +20,10 @@ export default class ContactIndex extends Component {
               <RemoveAllContact />
             </div>
             <div className="row py-2">
-              <FavouriteContact />
+              <AddContact />
             </div>
             <div className="row py-2">
-              <AddContact />
+              <FavouriteContact />
             </div>
             <div className="row py-2">
               <GeneralContact />
