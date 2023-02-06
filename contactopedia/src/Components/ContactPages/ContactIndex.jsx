@@ -43,7 +43,7 @@ export default class ContactIndex extends Component {
       return { status: "failure", msg: "Please Enter a valid Phone Number" };
     }
     const duplicateRecord = this.state.contactList.filter((x) => {
-      if (x.name == newContact.name || x.phone == newContact.phone) {
+      if (x.name == newContact.name && x.phone == newContact.phone) {
         return true;
       }
     });
@@ -65,6 +65,20 @@ export default class ContactIndex extends Component {
     }
   };
 
+  handleToggleFavorite = (contact) => {
+    this.setState((prevState) => {
+      return {
+        contactList: prevState.contactList.map((obj) => {
+          if (obj.id == contact.id) {
+            return { ...obj, isFavorite: !obj.isFavorite };
+          }else{
+            return obj;
+          }
+        }),
+      };
+    });
+  };
+
   render() {
     return (
       <div>
@@ -82,11 +96,13 @@ export default class ContactIndex extends Component {
             </div>
             <div className="row py-2">
               <FavouriteContact
+                favoriteClick={this.handleToggleFavorite}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == true)}
               />
             </div>
             <div className="row py-2">
               <GeneralContact
+                favoriteClick={this.handleToggleFavorite}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == false)}
               />
             </div>
