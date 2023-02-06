@@ -7,6 +7,10 @@ import FavouriteContact from "./FavouriteContact";
 import GeneralContact from "./GeneralContact";
 
 export default class ContactIndex extends Component {
+  handleAddContact = (newContact) => {
+    alert("Hello");
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +53,7 @@ export default class ContactIndex extends Component {
               <RemoveAllContact />
             </div>
             <div className="row py-2">
-              <AddContact />
+              <AddContact handleAddContact={this.handleAddContact} />
             </div>
             <div className="row py-2">
               <FavouriteContact
