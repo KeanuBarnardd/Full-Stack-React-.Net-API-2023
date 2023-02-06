@@ -15,6 +15,18 @@ class AddContact extends React.Component {
     const email = e.target.elements.contactEmail.value.trim();
     const phone = e.target.elements.contactPhone.value.trim();
     this.props.handleAddContact({ name: name, email: email, phone: phone });
+    const response = this.props.handleAddContact({
+      name: name,
+      email: email,
+      phone: phone,
+    });
+
+    if (response.status == "success") {
+      this.setState({ errorMessage: undefined, successMessage: response.msg });
+      document.querySelector();
+    } else {
+      this.setState({ errorMessage: response.msg, successMessage: undefined });
+    }
   };
 
   render() {
