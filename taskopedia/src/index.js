@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import "./style/style.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function MainBody() {
@@ -19,7 +19,7 @@ function Header() {
   return (
     <>
       <MainHeader />
-      <SubHeader />
+      <SubHeader /> 
     </>
   );
 }
@@ -30,7 +30,7 @@ const subHeaderStyle = {
 };
 
 function MainHeader() {
-  return <h1>React Course</h1>;
+  return <h1 className="heading1">React Course</h1>;
 }
 
 function SubHeader() {
