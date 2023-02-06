@@ -24,16 +24,21 @@ function Header() {
   );
 }
 
+const subHeaderStyle = {
+  color: "blueviolet",
+  backgroundColor: "lightGrey",
+};
+
 function MainHeader() {
   return <h1>React Course</h1>;
 }
 
 function SubHeader() {
-  return <p>This will be an exciting course.</p>;
+  return <p style={subHeaderStyle}>This will be an exciting course.</p>;
 }
 
 function Footer() {
-  return <p>Happy Coding!</p>;
+  return <p style={{ color: "gray", backgroundColor: "black" }}>Happy Coding!</p>;
 }
 
 root.render(
