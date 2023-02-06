@@ -71,9 +71,19 @@ export default class ContactIndex extends Component {
         contactList: prevState.contactList.map((obj) => {
           if (obj.id == contact.id) {
             return { ...obj, isFavorite: !obj.isFavorite };
-          }else{
+          } else {
             return obj;
           }
+        }),
+      };
+    });
+  };
+
+  handleDeleteContact = (contact) => {
+    this.setState((prevState) => {
+      return {
+        contactList: prevState.contactList.filter((obj) => {
+          return obj.id !== contact.id;
         }),
       };
     });
@@ -97,12 +107,14 @@ export default class ContactIndex extends Component {
             <div className="row py-2">
               <FavouriteContact
                 favoriteClick={this.handleToggleFavorite}
+                deleteClick={this.handleDeleteContact}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == true)}
               />
             </div>
             <div className="row py-2">
               <GeneralContact
                 favoriteClick={this.handleToggleFavorite}
+                deleteClick={this.handleDeleteContact}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == false)}
               />
             </div>

@@ -32,7 +32,9 @@ export default function Contact(props) {
         <button className="btn btn-primary btn-sm m-1">
           <i className="bi bi-pencil-square" style={{ fontSize: "1.3rem" }}></i>
         </button>
-        <button className="btn btn-danger btn-sm m-1">
+        <button className="btn btn-danger btn-sm m-1"
+        onClick={()=> props.deleteClick(props.contact)}
+        >
           <i className="bi bi-trash-fill" style={{ fontSize: "1.3rem" }}></i>
         </button>
       </div>
