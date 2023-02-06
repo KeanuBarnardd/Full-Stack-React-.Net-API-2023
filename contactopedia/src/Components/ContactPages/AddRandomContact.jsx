@@ -1,9 +1,22 @@
 import React from "react";
+import { getRandomUser } from "../../Utility/api";
 
-export default function AddRandomContact() {
+const GetRandomContact = async (props) => {
+  const responseFromApi = await getRandomUser();
+  console.log(responseFromApi);
+
+  return props.handleAddRandomContact({
+    name:responseFromApi.data.first_name + " " + responseFromApi.data.last_name, email: responseFromApi.data.email,
+    phone: responseFromApi.data.phone_number
+  });
+};
+
+export default function AddRandomContact(props) {
   return (
     <div>
-      <button className="btn btn-danger form-control">Add Random Contact </button>
+      <button className="btn btn-success form-control" onClick={() => GetRandomContact(props)}>
+        Add Random Contact{" "}
+      </button>
     </div>
   );
 }

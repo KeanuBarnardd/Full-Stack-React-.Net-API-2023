@@ -89,17 +89,37 @@ export default class ContactIndex extends Component {
     });
   };
 
+  handleAddRandomContact = (newContact) => {
+    const newFinalContact = {
+      ...newContact,
+      id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+      isFavorite: false,
+    };
+    this.setState((prevState) => {
+      return {
+        contactList: prevState.contactList.concat([newFinalContact]),
+      };
+    });
+  };
+
+  handleRemoveAllContacts = () => {
+    this.setState((prevState) => {
+      prevState.contactList.splice(0, prevState.contactList.length);
+      return { contactList: prevState.contactList };
+    });
+  };
+
   render() {
     return (
       <div>
         <Header />
         <div className="container" style={{ minHeight: "85vh" }}>
           <div className="row py-3">
-            <div className="col-4 offset-2">
-              <AddRandomContact />
+            <div className="col-4 offset-2 row">
+              <AddRandomContact handleAddRandomContact={this.handleAddRandomContact} />
             </div>
             <div className="col-4">
-              <RemoveAllContact />
+              <RemoveAllContact handleRemoveAllContacts={this.handleRemoveAllContacts} />
             </div>
             <div className="row py-2">
               <AddContact handleAddContact={this.handleAddContact} />
