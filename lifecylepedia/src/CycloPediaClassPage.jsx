@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getRandomUser } from "./Utility/api";
+import Instructor from './Instructor';
 
 export default class CycloPediaClassPage extends Component {
   constructor(props) {
@@ -64,18 +65,9 @@ export default class CycloPediaClassPage extends Component {
     console.log("Render Component");
     return (
       <div className="">
-        {this.state.instructor && (
-          <div className="p-3">
-            <span className="h4 text-success">Instructor</span>
-            <i className="bi-toggle-off btn btn-success btn-sm"></i>
-            <br />
-            Name:{this.state.instructor.name}
-            <br />
-            Email:{this.state.instructor.email}
-            <br />
-            Phone:{this.state.instructor.phone}
-          </div>
-        )}
+        {!this.state.hideInstructor ? (
+          <Instructor instructor={this.state.instructor} />
+        ): null}
         <div className="p-3">
           <span className="h4 text-success">Feedback</span>
           <br />
