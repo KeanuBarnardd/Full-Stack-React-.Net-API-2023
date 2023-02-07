@@ -132,6 +132,7 @@ export default class ContactIndex extends Component {
   };
 
   handleUpdateClick = (contact) => {
+    console.log(contact);
     this.setState((prevState) => {
       return {
         selectedContact: contact,
@@ -153,7 +154,11 @@ export default class ContactIndex extends Component {
               <RemoveAllContact handleRemoveAllContacts={this.handleRemoveAllContacts} />
             </div>
             <div className="row py-2">
-              <AddContact handleAddContact={this.handleAddContact} />
+              <AddContact
+                handleAddContact={this.handleAddContact}
+                isUpdating={this.state.isUpdating}
+                selectedContact={this.state.selectedContact}
+              />
             </div>
             <div className="row py-2">
               <FavouriteContact

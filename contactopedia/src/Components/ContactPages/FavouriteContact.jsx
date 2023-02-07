@@ -6,7 +6,13 @@ export default function FavouriteContact(props) {
     <div className="col-12 py-2" style={{ borderRadius: "10px", backgroundColor: "#323637" }}>
       <div className="p-2">
         {props.contacts.map((obj, index) => (
-          <Contact favoriteClick={props.favoriteClick} contact={obj} key={index} deleteClick={props.deleteClick} />
+          <Contact
+            favoriteClick={props.favoriteClick}
+            contact={obj}
+            key={index}
+            deleteClick={props.deleteClick}
+            handleUpdateClick={props.handleUpdateClick}
+          />
         ))}
       </div>
     </div>

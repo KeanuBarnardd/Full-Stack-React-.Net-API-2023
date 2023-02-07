@@ -9,6 +9,7 @@ export default function GeneralContact(props) {
             contact={obj}
             favoriteClick={props.favoriteClick}
             deleteClick={props.deleteClick}
+            handleUpdateClick={props.handleUpdateClick}
             key={index}
           />
         ))}
