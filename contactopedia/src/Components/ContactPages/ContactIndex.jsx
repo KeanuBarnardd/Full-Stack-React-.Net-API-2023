@@ -33,6 +33,8 @@ export default class ContactIndex extends Component {
           isFavorite: true,
         },
       ],
+      selectedContact: undefined,
+      isUpdating: false,
     };
   }
 
@@ -53,7 +55,15 @@ export default class ContactIndex extends Component {
     } else {
       const newFinalContact = {
         ...newContact,
-        id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+        id:
+          this.state.contactList.length !== 0
+            ? this.state.contactList[this.state.contactList.length - 1].id + 1
+            : this.setState((prevState) => {
+                return {
+                  ...prevState,
+                  id: 0,
+                };
+              }),
         isFavorite: false,
       };
       this.setState((prevState) => {
@@ -92,7 +102,16 @@ export default class ContactIndex extends Component {
   handleAddRandomContact = (newContact) => {
     const newFinalContact = {
       ...newContact,
-      id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+
+      id:
+        this.state.contactList.length !== 0
+          ? this.state.contactList[this.state.contactList.length - 1].id + 1
+          : this.setState((prevState) => {
+              return {
+                ...prevState,
+                id: 0,
+              };
+            }),
       isFavorite: false,
     };
     this.setState((prevState) => {
@@ -103,9 +122,21 @@ export default class ContactIndex extends Component {
   };
 
   handleRemoveAllContacts = () => {
+    console.log("This works");
     this.setState((prevState) => {
-      prevState.contactList.splice(0, prevState.contactList.length);
-      return { contactList: prevState.contactList };
+      return {
+        contactList: [],
+      };
+    });
+    console.log(this.state.contactList);
+  };
+
+  handleUpdateClick = (contact) => {
+    this.setState((prevState) => {
+      return {
+        selectedContact: contact,
+        isUpdating: true,
+      };
     });
   };
 
@@ -128,6 +159,7 @@ export default class ContactIndex extends Component {
               <FavouriteContact
                 favoriteClick={this.handleToggleFavorite}
                 deleteClick={this.handleDeleteContact}
+                handleUpdateClick={this.handleUpdateClick}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == true)}
               />
             </div>
@@ -135,6 +167,7 @@ export default class ContactIndex extends Component {
               <GeneralContact
                 favoriteClick={this.handleToggleFavorite}
                 deleteClick={this.handleDeleteContact}
+                handleUpdateClick={this.handleUpdateClick}
                 contacts={this.state.contactList.filter((u) => u.isFavorite == false)}
               />
             </div>
